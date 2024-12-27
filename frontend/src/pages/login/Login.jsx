@@ -1,19 +1,18 @@
 import { Header } from "../../components/header/Header"
-import { Sidemenu } from "../../components/sidebar/Sidemenu"
 import { Footer } from "../../components/footer/Footer"
-import './login.css'
+import { Sidebar } from "../../components/sidebar/Sidebar"
+import './Login.css'
 
 export function Login(){
 
 return(
     <>
         <Header/>
-        <Sidemenu/>
-
-        <div className="container">
+        <div className="fundo">
+        <Sidebar/>
             <div className="login">
                 <h3>Login do administrador</h3>
-                <section className="inputs">
+                <section className="inputsLogin">
                     <label>
                         <input type="text" placeholder="CPF"/>
                     </label>

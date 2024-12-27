@@ -1,15 +1,18 @@
 import './App.css'
-import { Header } from './components/header/Header'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Login } from './pages/login/Login'
+import { Cadastromed } from './pages/Cadastromedicamento/Cadastromed'
 
 
 function App() {
  
   return (
-    <>
-      
-      <Login/>
-    </>
+    <BrowserRouter>
+      <Routes>
+      <Route path="/login" element={<Login></Login>} />
+      <Route path="/CadastroMedicamentos" element={<Cadastromed></Cadastromed>} />
+      </Routes>
+      </BrowserRouter>
   )
 }
 
