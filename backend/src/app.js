@@ -1,47 +1,50 @@
 import express from 'express';
-import { JsonRpcProvider, ethers } from 'ethers';
-import batchRoutes from './routers/batchRouters.js';
-// import PharmaSupplyChainABI from './abi/PharmaSupplyChainABI.json';
+import cors from "cors";
+import dotenv from "dotenv";
+import userRoutes from './routers/userRouters.js';
 
 class App {
   constructor() {
     this.app = express();
-    this.config();
+
+    dotenv.config({
+      path: process.env.NODE_ENV === "production" ? ".env.production" : ".env",
+    });
+    
+    this.middlewares();
     this.routes();
     // this.blockchainSetup();
   }
 
-  // Configuração do servidor
-  config() {
+  middlewares() {
+    // Enable CORS for cross-origin resource sharing
+    this.app.use(cors());
+
+    // Enable JSON parsing for incoming requests
     this.app.use(express.json());
   }
 
   // Configuração das rotas
   routes() {
-    this.app.use('/api/batches', batchRoutes);
+    this.app.use("/api/users", userRoutes);
+
+    this.app.get("/", (req, res) => {
+      res.send("Server is running!");
+    });
+
+    this.app.get("/api/config", (req, res) => {
+      res.json({
+        port: process.env.PORT, // The port the server is running on
+        environment: process.env.NODE_ENV, // The current environment (e.g., development or production)
+        dbHost: process.env.DB_HOST, // The database host from environment variables
+      });
+    });
   }
 
-  // Conexão com a blockchain
-  // blockchainSetup() {
-  //   const provider = new JsonRpcProvider(
-  //     `https://mainnet.infura.io/v3/${process.env.INFURA_PROJECT_ID}`
-  //   );
-
-  //   const contractAddress = process.env.CONTRACT_ADDRESS;
-  //   const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
-  //   const contract = new ethers.Contract(contractAddress, PharmaSupplyChainABI, wallet);
-
-  //   // Middleware para disponibilizar o contrato na request
-  //   this.app.use((req, res, next) => {
-  //     req.contract = contract;
-  //     next();
-  //   });
-  // }
-
   // Método para iniciar o servidor
-  listen(port) {
-    this.app.listen(port, () => {
-      console.log(`Server running on port ${port}`);
+  listen() {
+    this.app.listen(process.env.port, () => {
+      console.log(`Server running on port ${process.env.port}`);
     });
   }
 }
