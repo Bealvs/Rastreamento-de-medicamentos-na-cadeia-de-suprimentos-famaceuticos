@@ -3,12 +3,6 @@ import { Header } from "../components/header/Header";
 import Sidebar from "../components/sidebar/Sidebar";
 import { Footer } from "../components/footer/Footer";
 
-const menuItems = [
-  { label: "Login", link: "/Login" },
-  { label: "Cadastro ADM", link: "register" },
-  { label: "Rastreio", link: "/TrackingUser" },
-];
-
 function TelaCadastro() {
   return (
     <div className="content">
@@ -35,7 +29,7 @@ function Register() {
     <div>
       <Header />
       <div style={{ display: "flex" }}>
-        <Sidebar menuItems={menuItems} />
+        <Sidebar />
         <TelaCadastro />
       </div>
       <Footer />
