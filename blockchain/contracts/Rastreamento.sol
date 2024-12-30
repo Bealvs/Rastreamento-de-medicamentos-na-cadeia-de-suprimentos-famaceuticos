@@ -22,7 +22,7 @@ contract Rastreamento{
 
     function criarSuprimento(string memory _nome, string memory _fabricante) public {
         counter++;
-        suprimentos[counter] = Suprimento(counter, _nome, _fabricante, "Em trânsito", block.timestamp);
+        suprimentos[counter] = Suprimento(counter, _nome, _fabricante, "Em transito", block.timestamp);
         emit SuprimentoCriado(counter, _nome, _fabricante);
     }
 
