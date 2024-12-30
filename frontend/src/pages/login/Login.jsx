@@ -10,7 +10,7 @@ return(
         <Header/>
         <div className="fundo">
         <Sidebar/>
-            <div className="login">
+            <form className="login">
                 <h3>Login do administrador</h3>
                 <section className="inputsLogin">
                     <label>
@@ -28,7 +28,7 @@ return(
                     <a id="final" href="">Não tem uma conta?</a>
                 </nav>
                 <button type="submit">Sign in</button>
-            </div>
+            </form>
         </div>
         <Footer/>
     </>

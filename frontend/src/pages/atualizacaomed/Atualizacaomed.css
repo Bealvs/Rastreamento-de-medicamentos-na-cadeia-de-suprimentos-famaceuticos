@@ -1,14 +1,16 @@
-.fundo{
+.fundoAtualiza1{
     display: flex;
     align-items: center;
     height: 100vh;
     background-color: white;
 }
 
-.login{
+.rastreio{
+
     display: flex;
     flex-direction: column;
     width: 400px;
+    height:45vh;
     background-color: #b4b7b83b;
     text-align: center;
     align-items: center;
@@ -17,17 +19,9 @@
     padding: 20px;
     border-radius: 5px;
     margin: auto;
-
-
 }
 
-.inputsLogin{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.inputsLogin>label>input{
+.rastreio>input{
     background-color: #166fc938;
     padding: 8px;
     border-radius: 30px;
@@ -37,20 +31,13 @@
     
 }
 
-.login>button{
+.rastreio>button{
+    display: block;
+    margin-top: 30px;
+    margin-bottom: 60px;
+    margin-inline: auto;
     background-color: #11B053;
-    margin: 10px;
     border-radius: 20px;
     color: white;
-}
-
-.links{
-    display: flex;
-    font-size: 14px;
-    gap: 100px;
-
-}
-
-a{
-    color: #3407B9;
+    
 }
