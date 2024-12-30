@@ -21,7 +21,7 @@ export default function Sidebar({ menuItems }) {
       isOpen={isOpen}
       onStateChange={(state) => setIsOpen(state.isOpen)}
     >
-      <a className="menu-item" href="/login">
+      <a className="menu-item" href="/">
         Login
       </a>
 
