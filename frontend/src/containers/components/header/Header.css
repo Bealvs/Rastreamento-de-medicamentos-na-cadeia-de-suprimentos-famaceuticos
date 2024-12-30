@@ -1,0 +1,23 @@
+#logo {
+  display: flex;
+  width: 200px;
+}
+
+header {
+  display: flex;
+  height: 80px;
+  width: 100vw;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
+  border-bottom: 3px solid rgb(60, 56, 56);
+}
+
+#cabecalho {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  height: 100%;
+  align-items: center;
+  justify-items: center;
+}

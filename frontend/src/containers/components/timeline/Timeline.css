@@ -1,0 +1,35 @@
+.timeline-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+  margin: 160px 0 90px;
+}
+
+.timeline-step {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.timeline-icon {
+  width: 70px;
+  height: 70px;
+  background-color: white;
+  border: 15px solid #4caf50; /* Cor verde */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px; /* Tamanho do ícone */
+}
+
+.timeline-line {
+  height: 10px;
+  width: 110px;
+  background-color: #4caf50; /* Cor verde */
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+}

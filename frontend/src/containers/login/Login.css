@@ -1,0 +1,52 @@
+.fundo {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  background-color: white;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  background-color: #b4b7b83b;
+  text-align: center;
+  align-items: center;
+  justify-self: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 5px;
+  margin: auto;
+}
+
+.inputsLogin {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.inputsLogin > label > input {
+  background-color: #166fc938;
+  padding: 5px;
+  border-radius: 30px;
+  border: none;
+  margin: 5px;
+  width: 85%;
+}
+
+.login > button {
+  background-color: #11b053;
+  margin: 10px;
+  border-radius: 20px;
+  color: white;
+}
+
+.links {
+  display: flex;
+  font-size: 14px;
+  gap: 100px;
+}
+
+a {
+  color: #3407b9;
+}
