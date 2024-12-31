@@ -1,6 +1,6 @@
 import "./TrackingAdm.css";
 import { Header } from "../components/header/Header";
-import Sidebar from "../components/sidebar/Sidebar";
+import SidebarAdm from "../components/sidebarAdm/SidebarAdm";
 import { Footer } from "../components/footer/Footer";
 
 function TelaBuscar() {
@@ -22,7 +22,7 @@ function TrackingAdm() {
     <div>
       <Header />
       <div style={{ display: "flex" }}>
-        <Sidebar />
+        <SidebarAdm />
         <TelaBuscar />
       </div>
       <Footer />

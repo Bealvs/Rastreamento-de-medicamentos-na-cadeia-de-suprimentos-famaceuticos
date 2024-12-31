@@ -1,5 +1,5 @@
 import "./Header.css";
-import logo from "/home/rakeltc/Documentos/Compass uol/Projeto final/Compass-final/src/assets/images/logo1.png";
+import logo from "/src/assets/logo1.png";
 
 export function Header() {
   return (

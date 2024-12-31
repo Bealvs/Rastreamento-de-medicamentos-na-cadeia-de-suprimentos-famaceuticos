@@ -1,6 +1,6 @@
 import "./ResultAdm.css";
 import { Header } from "../components/header/Header";
-// import Sidebar from "../components/sidebar/Sidebar";  (Fazer SideBar para as páginas ADM)
+import SidebarAdm from "../components/sidebarAdm/SidebarAdm";
 import { Footer } from "../components/footer/Footer";
 import Timeline from "../components/timeline/Timeline";
 
@@ -26,6 +26,7 @@ function ResultAdm() {
     <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
       <Header />
       <div style={{ display: "flex", flex: 1 }}>
+        <SidebarAdm />
         <ResultA />
       </div>
       <Footer />
