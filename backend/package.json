@@ -5,6 +5,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node ./src/app.js",
+    "dev": "cross-env NODE_ENV=development node ./src/app.js",  
+    "prod": "cross-env NODE_ENV=production node ./src/app.js",  
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -20,5 +23,8 @@
     "pg": "^8.13.1",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.5"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }
