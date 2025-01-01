@@ -1,7 +1,7 @@
 import "./TrackingAdm.css";
-import { Header } from "../components/header/Header";
-import SidebarAdm from "../components/sidebarAdm/SidebarAdm";
-import { Footer } from "../components/footer/Footer";
+import { Header } from "../../components/header/Header";
+import SidebarAdm from "../../components/sidebarAdm/SidebarAdm";
+import { Footer } from "../../components/footer/Footer";
 
 function TelaBuscar() {
   return (

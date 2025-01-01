@@ -1,11 +1,13 @@
 import { Header } from "../../components/header/Header"
 import { Footer } from "../../components/footer/Footer"
+import SidebarAdm from "../../components/sidebarAdm/SidebarAdm";
 import './Cadastromed.css'
 
 export function Cadastromed() {
     return (
         <>
             <Header />
+            <SidebarAdm/>
             <div className="fundoCadastro">
                 <form className="cadastro">
                     <h2>Cadastro de medicamento</h2>
