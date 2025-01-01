@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import "./Sidebar.css";
+import "./SidebarAdm.css";
 import { slide as Menu } from "react-burger-menu";
 import { Link } from "react-router-dom";
 
-export default function Sidebar({ menuItems }) {
+export default function SidebarAdm({ menuItems }) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   useEffect(() => {
@@ -21,17 +21,21 @@ export default function Sidebar({ menuItems }) {
       isOpen={isOpen}
       onStateChange={(state) => setIsOpen(state.isOpen)}
     >
-      <a className="menu-item" href="/">
-        Login
-      </a>
+      <Link className="menu-item" to ="/tracking-adm">
+        Rastrear
+      </Link>
 
-      <a className="menu-item" href="/register">
-        Cadastro ADM
-      </a>
+      <Link className="menu-item" to ="/CadastroMedicamentos">
+        Cadastro de medicamento
+      </Link>
 
-      <a className="menu-item" href="/tracking-user">
-        Rastreio
-      </a>
+      <Link className="menu-item" to ="/atualizacaomed/rastreio">
+        Atualizar
+      </Link>
+
+      <Link className="menu-item" to ="/historico">
+        Histórico
+      </Link>
     </Menu>
   );
 }

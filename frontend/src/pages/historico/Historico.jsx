@@ -1,11 +1,13 @@
 import { Header } from "../../components/header/Header"
 import { Footer } from "../../components/footer/Footer"
+import SidebarAdm from "../../components/sidebarAdm/SidebarAdm";
 import './Historico.css'
 
 export function Historico() {
     return (
         <>
         <Header />
+        <SidebarAdm/>
         <div className="fundoHistorico">
             <div className="Historico">
                 <div className="quadrado">

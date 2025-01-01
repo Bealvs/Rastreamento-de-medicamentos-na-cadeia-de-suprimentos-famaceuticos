@@ -1,6 +1,6 @@
 import { Header } from "../../components/header/Header"
 import { Footer } from "../../components/footer/Footer"
-import { Sidebar } from "../../components/sidebar/Sidebar"
+import Sidebar from "../../components/sidebar/Sidebar";
 import './Login.css'
 
 export function Login(){
@@ -8,8 +8,8 @@ export function Login(){
 return(
     <>
         <Header/>
-        <div className="fundo">
         <Sidebar/>
+        <div className="fundo">
             <form className="login">
                 <h3>Login do administrador</h3>
                 <section className="inputsLogin">
