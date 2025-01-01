@@ -26,6 +26,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login></Login>} />
         <Route path="/atualizacaomed/rastreio" element={<Atualizacaomed></Atualizacaomed>} />
         <Route path="/atualizacaomed/rastreio/id" element={<Atualizacaoid></Atualizacaoid>} />
         <Route path="/historico" element={<Historico></Historico>} />
