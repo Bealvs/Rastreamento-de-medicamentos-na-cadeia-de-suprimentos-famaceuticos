@@ -1,0 +1,30 @@
+.container-resultUser {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  flex: 1;
+}
+
+.contentUser {
+  background-color: #eceded;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 1500px;
+  height: 700px;
+  text-align: center;
+  margin: 20px 20px;
+}
+
+.contentUser h1 {
+  margin-top: 50px;
+}
+
+.Timeline {
+  align-items: center;
+}
+
+.delivery {
+  text-align: left;
+  margin: 120px 200px;
+}
