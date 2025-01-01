@@ -5,12 +5,12 @@ import { Cadastromed } from './pages/Cadastromedicamento/Cadastromed';
 import { Atualizacaomed } from './pages/Atualizacaomed/Atualizacaomed';
 import { Atualizacaoid } from './pages/atualizacaoid/Atualizacaoid';
 import { Historico } from './pages/historico/Historico';
-import Register from "./containers/registerAdm/Register";
-import TrackingUser from "./containers/trackingUser/TrackingUser";
-import TrackingAdm from "./containers/trackingAdm/TrackingAdm";
-import ResultUser from "./containers/resultrackingUser/ResultUser";
-import ResultAdm from "./containers/resultranckingAdm/ResultAdm";
-import Sidebar from "./containers/components/sidebar/Sidebar";
+import Register from "./pages/registerAdm/Register";
+import TrackingUser from "./pages/trackingUser/TrackingUser";
+import TrackingAdm from "./pages/trackingAdm/TrackingAdm";
+import ResultUser from "./pages/resultrackingUser/ResultUser";
+import ResultAdm from "./pages/resultranckingAdm/ResultAdm";
+import Sidebar from "./components/sidebar/Sidebar";
 
 function Layout({ children }) {
   return (
