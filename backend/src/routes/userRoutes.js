@@ -10,7 +10,7 @@ import authMiddleware from "../middlewares/authMiddleware.js"; // Import authent
 const router = express.Router(); // Create an Express router
 
 // Route for user registration
-router.post("/register/user", registerUser);
+router.post("/register", registerUser);
 
 // Route for user login and JWT token generation
 router.post("/login", loginUser);
