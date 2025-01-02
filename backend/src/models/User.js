@@ -21,6 +21,25 @@ const User = sequelize.define(
         len: [3, 100], // Name must be between 3 and 100 characters.
       },
     },
+    // CPF of the user.
+    cpf: {
+      type: DataTypes.STRING, // String type for cpf.
+      allowNull: false, // Cpf is required.
+      unique: true, // Each cpf must be unique.
+      validate: {
+        isNumeric: true, // CPF must be numeric.
+        len: [11, 11], // CPF must be 11 characters.
+      },
+    },
+    // CNPJ of the user's company.
+    cnpj: {
+      type: DataTypes.STRING, // String type for cnpj.
+      allowNull: false, // cnpj is required.
+      validate: {
+        isNumeric: true, // CNPJ must be numeric
+        len: 14, // CNPJ must be 14 characters.
+      },
+    },
     // Email address of the user, must be unique and valid.
     email: {
       type: DataTypes.STRING, // String type for emails.

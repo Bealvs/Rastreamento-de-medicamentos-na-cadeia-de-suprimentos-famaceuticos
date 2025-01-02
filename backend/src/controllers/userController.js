@@ -13,6 +13,8 @@ export const getUserProfile = async (req, res) => {
     res.status(200).json({
       id: user.id,
       name: user.name,
+      cpf: user.cpf,
+      cnpj: user.cnpj,
       email: user.email,
       role: user.role,
       createdAt: user.createdAt,
@@ -27,12 +29,15 @@ export const getUserProfile = async (req, res) => {
 
 // Registers a new user in the system.
 export const registerUser = async (req, res) => {
-  const { name, email, password, role } = req.body;
+  const { name, cpf, cnpj, email, password, role } = req.body;
   try {
-    const user = await User.create({ name, email, password, role });
+    const user = await User.create({ name, cpf, cnpj, email, password, role });
     res
       .status(201)
-      .json({ message: "Usuário registrado", user: { name, email, role } });
+      .json({
+        message: "Usuário registrado",
+        user: { name, cpf, cnpj, email, role },
+      });
   } catch (error) {
     res
       .status(400)
@@ -72,7 +77,7 @@ export const loginUser = async (req, res) => {
 
 // Updates the profile information of the currently authenticated user.
 export const updateUserProfile = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, cpf, cnpj, email, password, role } = req.body;
   try {
     const user = await User.findByPk(req.user.id);
     if (!user) {
@@ -81,7 +86,10 @@ export const updateUserProfile = async (req, res) => {
 
     const updatedData = {
       name: name || user.name,
+      cpf: cpf || user.cpf,
+      cnpj: cnpj || user.cnpj,
       email: email || user.email,
+      role: role || user.role,
     };
 
     if (password) {
@@ -89,12 +97,17 @@ export const updateUserProfile = async (req, res) => {
     }
 
     await user.update(updatedData);
-    res
-      .status(200)
-      .json({
-        message: "Perfil atualizado com sucesso",
-        user: { name: updatedData.name, email: updatedData.email },
-      });
+    res.status(200).json({
+      message: "Perfil atualizado com sucesso",
+      user: {
+        id: user.id,
+        name: updatedData.name,
+        cpf: updatedData.cpf,
+        cnpj: updatedData.cnpj,
+        email: updatedData.email,
+        role: updatedData.role,
+      },
+    });
   } catch (error) {
     res
       .status(500)
