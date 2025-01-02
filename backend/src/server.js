@@ -7,7 +7,4 @@ const app = new App();
 const PORT = process.env.PORT || 2000;
 
 // Start the server and listen on the specified port
-app.app.listen(PORT, () => {
-  // Log a message to the console indicating the server is running
-  console.log(`Server is running on port ${PORT}`);
-});
+app.listen();
