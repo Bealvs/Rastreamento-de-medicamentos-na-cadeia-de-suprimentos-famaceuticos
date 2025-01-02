@@ -26,7 +26,7 @@ const Product = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [3, 100], // Must be between 3 and 100 characters.
+        len: [3, 150], // Must be between 3 and 150 characters.
       },
     },
     // Generic name of the pharmaceutical product.
@@ -34,7 +34,7 @@ const Product = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [3, 100], // Must be between 3 and 100 characters.
+        len: [3, 150], // Must be between 3 and 150 characters.
       },
     },
     // Characteristics of the product.
@@ -45,7 +45,7 @@ const Product = sequelize.define(
     // Danger level of the product.
     dangerLevel: {
       type: DataTypes.ENUM("low", "medium", "high", "critical"), // Enum for danger levels.
-      allowNull: false,
+      allowNull: true,
       defaultValue: "low", // Default level is 'low'.
     },
     // Batch number of the product.
@@ -87,7 +87,7 @@ const Product = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false, // Manufacturer name is required.
       validate: {
-        len: [3, 100], // Name must be between 3 and 100 characters.
+        len: [3, 150], // Name must be between 3 and 150 characters.
       },
     },
     // CNPJ of the manufacturer (Brazilian company registration).
@@ -104,12 +104,29 @@ const Product = sequelize.define(
         },
       },
     },
-    // Contact email for the manufacturer.
-    manufacturerEmail: {
+    // Trade name.
+    tradeName: {
       type: DataTypes.STRING,
-      allowNull: false, // Email is required.
+      allowNull: false,
       validate: {
-        isEmail: true, // Must be a valid email address.
+        len: [3, 150], // Name must be between 3 and 150 characters.
+      },
+    },
+    // Tracking code of the product.
+    trackingCode: {
+      type: DataTypes.STRING,
+      allowNull: false, // Tracking code is required.
+      unique: true, // Must be unique.
+      validate: {
+        len: [10, 30], // Tracking code must be between 10 and 30 characters.
+      },
+    },
+    // Destination point of the product.
+    destinationPoint: {
+      type: DataTypes.STRING,
+      allowNull: false, // Destination point is required.
+      validate: {
+        len: [3, 150], // Destination point must be between 3 and 150 characters.
       },
     },
   },
