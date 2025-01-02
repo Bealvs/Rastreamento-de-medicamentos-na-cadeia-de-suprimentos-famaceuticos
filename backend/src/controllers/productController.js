@@ -4,30 +4,67 @@ import Tracking from "../models/tracking.js"; // Importing the Tracking model.
 const productController = {
   // Create a new product and add initial tracking
   async createProduct(req, res) {
-    const { trackingCode, destinationPoint, ...productData } = req.body;
+    // Destructuring the incoming request body to extract the product data and tracking information
+    const {
+      productCode,
+      commercialName,
+      genericName,
+      characteristics,
+      dangerLevel,
+      batch,
+      manufacturingDate,
+      expirationDate,
+      manufacturerName,
+      cnpj,
+      tradeName,
+      trackingCode,
+      destinationPoint,
+      location,  // Expecting location for tracking
+      event,      // Expecting event for tracking
+    } = req.body;
 
     try {
       // Creating a new product using the data from the request body
       const product = await Product.create({
-        ...productData,
+        productCode,
+        commercialName,
+        genericName,
+        characteristics,
+        dangerLevel,
+        batch,
+        manufacturingDate,
+        expirationDate,
+        manufacturerName,
+        cnpj,
+        tradeName,
         trackingCode,
         destinationPoint,
       });
 
-      // Automatically adding an initial tracking entry for the product
-      const tracking = await Tracking.create({
-        productId: product.id,
-        location: "Initial location", // You can modify this default value as needed
-        event: "Product created",
-        timestamp: new Date(),
-      });
+      // If location and event are provided, automatically adding an initial tracking entry for the product
+      if (location && event) {
+        const tracking = await Tracking.create({
+          productId: product.id,
+          location,   // Location for the tracking entry
+          event,      // Event for the tracking entry
+          timestamp: new Date(),  // Current timestamp for the tracking event
+        });
 
-      res.status(201).json({
-        product,
-        tracking,
-      }); // Responding with the created product and tracking
+        // Responding with the created product and the initial tracking entry
+        res.status(201).json({
+          product,
+          tracking,
+        });
+      } else {
+        // If location and event are not provided, returning the product created without tracking
+        res.status(201).json({
+          product,
+          message: "Product created, but tracking information was not provided.",
+        });
+      }
     } catch (error) {
-      res.status(400).json({ error: error.message }); // Handling errors and sending status 400
+      // Handling errors and sending status 400
+      res.status(400).json({ error: error.message });
     }
   },
 
@@ -89,7 +126,7 @@ const productController = {
   // Add a Tracking entry for a product
   async addTracking(req, res) {
     const { productId } = req.params;
-    const { location, event, timestamp } = req.body;
+    const { location, event } = req.body;
 
     try {
       const product = await Product.findByPk(productId);
@@ -100,7 +137,7 @@ const productController = {
       const tracking = await Tracking.create({
         location,
         event,
-        timestamp,
+        timestamp: new Date(), // Automatically using the current date and time
         productId,
       });
 

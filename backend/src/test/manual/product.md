@@ -19,7 +19,9 @@
        "cnpj": "12.345.678/0001-95",
        "tradeName": "Produto Comercial A",
        "trackingCode": "TRK123456789",
-       "destinationPoint": "Destino A"
+       "destinationPoint": "Destino A",
+       "location": "Armazém A",  // Novo campo de localização para tracking
+       "event": "Produto em transporte"  // Novo campo de evento para tracking
      }
      ```
    - **Expected Output:** 
@@ -43,6 +45,13 @@
        "tradeName": "Produto Comercial A",
        "trackingCode": "TRK123456789",
        "destinationPoint": "Destino A"
+     },
+     "tracking": {
+       "id": "some-tracking-uuid",
+       "location": "Armazém A",
+       "event": "Produto em transporte",
+       "timestamp": "2024-01-02T10:00:00Z",
+       "productId": "some-uuid"
      }
      ```
 
@@ -126,9 +135,8 @@
       - Body:
      ```json
      {
-       "location": "Armazém A",
-       "event": "Produto em transporte",
-       "timestamp": "2024-01-02T10:00:00Z"
+       "location": "Armazém B",
+       "event": "Produto em estoque"
      }
      ```
    - **Expected Output:** 
@@ -137,9 +145,9 @@
      ```json
      {
        "id": "some-tracking-uuid",
-       "location": "Armazém A",
-       "event": "Produto em transporte",
-       "timestamp": "2024-01-02T10:00:00Z",
+       "location": "Armazém B",
+       "event": "Produto em estoque",
+       "timestamp": "2024-01-02T11:00:00Z",
        "productId": "some-uuid"
      }
      ```
@@ -157,6 +165,13 @@
          "location": "Armazém A",
          "event": "Produto em transporte",
          "timestamp": "2024-01-02T10:00:00Z",
+         "productId": "some-uuid"
+       },
+       {
+         "id": "some-other-tracking-uuid",
+         "location": "Armazém B",
+         "event": "Produto em estoque",
+         "timestamp": "2024-01-02T11:00:00Z",
          "productId": "some-uuid"
        }
      ]
