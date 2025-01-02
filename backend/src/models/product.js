@@ -82,6 +82,36 @@ const Product = sequelize.define(
       allowNull: false,
       defaultValue: "produced", // Default status is 'produced'.
     },
+    // Manufacturer's name.
+    manufacturerName: {
+      type: DataTypes.STRING,
+      allowNull: false, // Manufacturer name is required.
+      validate: {
+        len: [3, 100], // Name must be between 3 and 100 characters.
+      },
+    },
+    // CNPJ of the manufacturer (Brazilian company registration).
+    cnpj: {
+      type: DataTypes.STRING,
+      allowNull: false, // CNPJ is required.
+      unique: true, // CNPJ must be unique.
+      validate: {
+        isCNPJ(value) {
+          const cnpjRegex = /^[0-9]{2}\.[0-9]{3}\.[0-9]{3}\/[0-9]{4}-[0-9]{2}$/; // Brazilian CNPJ format.
+          if (!cnpjRegex.test(value)) {
+            throw new Error("Invalid CNPJ format.");
+          }
+        },
+      },
+    },
+    // Contact email for the manufacturer.
+    manufacturerEmail: {
+      type: DataTypes.STRING,
+      allowNull: false, // Email is required.
+      validate: {
+        isEmail: true, // Must be a valid email address.
+      },
+    },
   },
   {
     timestamps: true, // Automatically adds createdAt and updatedAt.
