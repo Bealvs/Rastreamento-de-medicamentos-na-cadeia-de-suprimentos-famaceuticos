@@ -15,7 +15,6 @@ class App {
     
     this.middlewares();
     this.routes();
-    // this.blockchainSetup();
   }
 
   middlewares() {
@@ -47,8 +46,9 @@ class App {
 
   // Método para iniciar o servidor
   listen() {
-    this.app.listen(process.env.port, () => {
-      console.log(`Server running on port ${process.env.port}`);
+    console.log("Iniciando servidor...");
+    this.app.listen(process.env.PORT, () => {
+      console.log(`Server running on port ${process.env.PORT}`);
     });
   }
 }

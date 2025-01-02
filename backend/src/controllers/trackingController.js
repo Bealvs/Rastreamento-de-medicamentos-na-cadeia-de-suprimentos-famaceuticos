@@ -4,14 +4,14 @@ const trackingController = {
   // Create a new Tracking entry
   async createTracking(req, res) {
     const { productId } = req.params; // Extracting the product ID from the request parameters
-    const { location, event, timestamp } = req.body; // Extracting tracking data from the request body
+    const { location, event } = req.body; // Extracting tracking data from the request body
 
     try {
       // Creating a new tracking entry for the given product
       const tracking = await Tracking.create({
         location,
         event,
-        timestamp,
+        timestamp: new Date(), // Automatically using the current date and time
         productId,
       });
       res.status(201).json(tracking); // Responding with the created tracking and status 201
