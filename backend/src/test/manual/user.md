@@ -40,7 +40,7 @@
       - Body:
      ```json
      { 
-       "email": "john@example.com", 
+       "cpf": "98323243434", 
        "password": "123456" 
      }
      ```
@@ -54,7 +54,7 @@
       - Body:
      ```json
      { 
-       "email": "invalid@example.com", 
+       "cpf": "32323", 
        "password": "wrongpassword" 
      }
      ```
