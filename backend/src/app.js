@@ -1,7 +1,9 @@
 import express from 'express';
 import cors from "cors";
 import dotenv from "dotenv";
-import userRoutes from './routers/userRouters.js';
+import userRoutes from './routes/userRoutes.js';
+import productRoutes from "./routes/productRoutes.js";
+import trackingRoutes from "./routes/trackingRoutes.js";
 
 class App {
   constructor() {
@@ -26,7 +28,9 @@ class App {
 
   // Configuração das rotas
   routes() {
-    this.app.use("/api/users", userRoutes);
+    this.app.use("/api/v1/users", userRoutes);
+    this.app.use("/api/v1/products", productRoutes);
+    this.app.use("/api/v1/trackings", trackingRoutes);
 
     this.app.get("/", (req, res) => {
       res.send("Server is running!");
