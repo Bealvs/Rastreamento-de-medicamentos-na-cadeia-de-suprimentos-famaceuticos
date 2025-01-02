@@ -47,16 +47,16 @@ export const registerUser = async (req, res) => {
 
 // Authenticates a user and provides a JWT for subsequent requests.
 export const loginUser = async (req, res) => {
-  const { email, password } = req.body;
+  const { cpf, password } = req.body; 
 
   try {
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({ where: { cpf } });
 
     if (!user) {
       return res.status(401).json({ message: "Credenciais inválidas" });
     }
 
-    const isPasswordValid = await user.validatePassword(password); // Compares the provided password with the stored hash.
+    const isPasswordValid = await user.validatePassword(password);
     if (!isPasswordValid) {
       return res.status(401).json({ message: "Credenciais inválidas" });
     }
