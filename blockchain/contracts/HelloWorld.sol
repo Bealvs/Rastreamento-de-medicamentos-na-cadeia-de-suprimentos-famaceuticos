@@ -2,9 +2,9 @@
 
 pragma solidity ^0.8.0;
 
-contract MyContract {
+contract HelloWorld {
 
-    string message = "Hello World";
+    string message = "Hello World !";
 
     event MessageUpdate(string oldMessage, string newMessage);
 
