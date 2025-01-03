@@ -79,7 +79,7 @@ const Product = sequelize.define(
     // Status of the product in the tracking process.
     status: {
       type: DataTypes.ENUM("produced", "inspected", "in transit", "delivered"), // Enum for product statuses.
-      allowNull: false,
+      allowNull: true,
       defaultValue: "produced", // Default status is 'produced'.
     },
     // Manufacturer's name.
