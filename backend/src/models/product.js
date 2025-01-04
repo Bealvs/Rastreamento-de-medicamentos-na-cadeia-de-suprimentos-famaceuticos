@@ -1,139 +1,113 @@
-// Importing necessary modules from Sequelize and other dependencies.
 import { DataTypes } from "sequelize";
-import sequelize from "../config/database.js"; // Database configuration.
+import sequelize from "../config/database.js";
 
-// Defining the Product model, representing pharmaceutical products in the database.
 const Product = sequelize.define(
   "Product",
   {
-    // Unique identifier for each product, generated as a UUID.
     id: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4, // Automatically generates a UUID v4.
-      primaryKey: true, // Marks this field as the primary key.
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
     },
-    // Unique code of the product.
     productCode: {
-      type: DataTypes.STRING, // String type for product code.
-      allowNull: false, // Product code is required.
-      unique: true, // Each product code must be unique.
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
       validate: {
-        len: [4, 15], // Product code must be between 4 and 15 characters.
+        len: [4, 15],
       },
     },
-    // Commercial name of the pharmaceutical product.
     commercialName: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [3, 150], // Must be between 3 and 150 characters.
+        len: [3, 150],
       },
     },
-    // Generic name of the pharmaceutical product.
     genericName: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [3, 150], // Must be between 3 and 150 characters.
+        len: [3, 150],
       },
     },
-    // Characteristics of the product.
     characteristics: {
-      type: DataTypes.TEXT, // Allows detailed descriptions.
+      type: DataTypes.TEXT,
       allowNull: true,
     },
-    // Danger level of the product.
     dangerLevel: {
-      type: DataTypes.ENUM("low", "medium", "high", "critical"), // Enum for danger levels.
+      type: DataTypes.ENUM("low", "medium", "high", "critical"),
       allowNull: true,
-      defaultValue: "low", // Default level is 'low'.
+      defaultValue: "low",
     },
-    // Batch number of the product.
     batch: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [1, 50], // Must be between 1 and 50 characters.
+        len: [1, 50],
       },
     },
-    // Manufacturing date of the product.
     manufacturingDate: {
       type: DataTypes.DATE,
-      allowNull: false, // Manufacturing date is required.
+      allowNull: false,
       validate: {
-        isDate: true, // Must be a valid date.
+        isDate: true,
       },
     },
-    // Expiration date of the product.
     expirationDate: {
       type: DataTypes.DATE,
-      allowNull: false, // Expiration date is required.
+      allowNull: false,
       validate: {
-        isDate: true, // Must be a valid date.
+        isDate: true,
         isAfter: {
-          args: new Date().toISOString().split("T")[0], // Must be after today.
+          args: new Date().toISOString().split("T")[0],
           msg: "Expiration date must be in the future.",
         },
       },
     },
-    // Status of the product in the tracking process.
     status: {
-      type: DataTypes.ENUM("produced", "inspected", "in transit", "delivered"), // Enum for product statuses.
+      type: DataTypes.ENUM("produced", "inspected", "in transit", "delivered"),
       allowNull: true,
-      defaultValue: "produced", // Default status is 'produced'.
+      defaultValue: "produced",
     },
-    // Manufacturer's name.
     manufacturerName: {
       type: DataTypes.STRING,
-      allowNull: false, // Manufacturer name is required.
+      allowNull: false,
       validate: {
-        len: [3, 150], // Name must be between 3 and 150 characters.
+        len: [3, 150],
       },
     },
-    // CNPJ of the manufacturer (Brazilian company registration).
     cnpj: {
       type: DataTypes.STRING,
-      allowNull: false, // CNPJ is required.
-      unique: true, // CNPJ must be unique.
+      allowNull: false,
+      unique: true,
       validate: {
         isCNPJ(value) {
-          const cnpjRegex = /^[0-9]{2}\.[0-9]{3}\.[0-9]{3}\/[0-9]{4}-[0-9]{2}$/; // Brazilian CNPJ format.
+          const cnpjRegex = /^[0-9]{2}\.[0-9]{3}\.[0-9]{3}\/[0-9]{4}-[0-9]{2}$/;
           if (!cnpjRegex.test(value)) {
             throw new Error("Invalid CNPJ format.");
           }
         },
       },
     },
-    // Trade name.
     tradeName: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [3, 150], // Name must be between 3 and 150 characters.
+        len: [3, 150],
       },
     },
-    // Tracking code of the product.
     trackingCode: {
       type: DataTypes.STRING,
-      allowNull: false, // Tracking code is required.
-      unique: true, // Must be unique.
+      allowNull: false,
       validate: {
-        len: [10, 30], // Tracking code must be between 10 and 30 characters.
-      },
-    },
-    // Destination point of the product.
-    destinationPoint: {
-      type: DataTypes.STRING,
-      allowNull: false, // Destination point is required.
-      validate: {
-        len: [3, 150], // Destination point must be between 3 and 150 characters.
+        len: [10, 30],
       },
     },
   },
   {
-    timestamps: true, // Automatically adds createdAt and updatedAt.
+    timestamps: true,
   }
 );
 
-// Exporting the Product model for use in other parts of the application.
 export default Product;
