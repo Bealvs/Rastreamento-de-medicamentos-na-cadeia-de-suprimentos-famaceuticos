@@ -7,8 +7,14 @@ const Tracking = sequelize.define("Tracking", {
     allowNull: false,
   },
   event: {
-    type: DataTypes.STRING,
+    type: DataTypes.ENUM(
+      "Produto postado",
+      "Produto em inspeção",
+      "Produto em transporte",
+      "Produto entregue"
+    ),
     allowNull: false,
+    defaultValue: "Produto postado",
   },
   timestamp: {
     type: DataTypes.DATE,
