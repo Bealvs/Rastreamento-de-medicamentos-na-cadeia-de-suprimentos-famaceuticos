@@ -21,15 +21,15 @@ export default function Sidebar({ menuItems }) {
       isOpen={isOpen}
       onStateChange={(state) => setIsOpen(state.isOpen)}
     >
-      <Link className="menu-item" to ="/">
+      <Link className="menu-item" to="/">
         Login
       </Link>
 
-      <Link className="menu-item" to ="/register">
+      <Link className="menu-item" to="/register">
         Cadastro ADM
       </Link>
 
-      <Link className="menu-item" to ="/tracking-user">
+      <Link className="menu-item" to="/tracking-user">
         Rastreio
       </Link>
     </Menu>

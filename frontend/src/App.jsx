@@ -1,10 +1,10 @@
-import './App.css'
+import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Login } from './pages/login/Login'
-import { Cadastromed } from './pages/Cadastromedicamento/Cadastromed';
-import { Atualizacaomed } from './pages/Atualizacaomed/Atualizacaomed';
-import { Atualizacaoid } from './pages/atualizacaoid/Atualizacaoid';
-import { Historico } from './pages/historico/Historico';
+import Login from "./pages/login/Login";
+import { Cadastromed } from "./pages/cadastromedicamento/Cadastromed";
+import { Atualizacaomed } from "./pages/atualizacaomed/Atualizacaomed";
+import { Atualizacaoid } from "./pages/atualizacaoid/Atualizacaoid";
+import { Historico } from "./pages/historico/Historico";
 import Register from "./pages/registerAdm/Register";
 import TrackingUser from "./pages/trackingUser/TrackingUser";
 import TrackingAdm from "./pages/trackingAdm/TrackingAdm";
@@ -25,22 +25,35 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login></Login>} />
         <Route path="/login" element={<Login></Login>} />
-        <Route path="/atualizacaomed/rastreio" element={<Atualizacaomed></Atualizacaomed>} />
-        <Route path="/atualizacaomed/rastreio/id" element={<Atualizacaoid></Atualizacaoid>} />
+        <Route
+          path="/atualizacaomed/rastreio"
+          element={<Atualizacaomed></Atualizacaomed>}
+        />
+        <Route
+          path="/atualizacaomed/rastreio/id"
+          element={<Atualizacaoid></Atualizacaoid>}
+        />
         <Route path="/historico" element={<Historico></Historico>} />
-        <Route path="/CadastroMedicamentos" element={<Cadastromed></Cadastromed>} />
+        <Route
+          path="/CadastroMedicamentos"
+          element={<Cadastromed></Cadastromed>}
+        />
         <Route path="/register" element={<Register />} />
         <Route path="/tracking-user" element={<TrackingUser />} />
         <Route path="/result-user" element={<ResultUser />} />
-        <Route path="/tracking-adm" element={
+        <Route
+          path="/tracking-adm"
+          element={
             <Layout>
               <TrackingAdm />
             </Layout>
           }
         />
-        <Route path="/result-adm" element={
+        <Route
+          path="/result-adm"
+          element={
             <Layout>
               <ResultAdm />
             </Layout>

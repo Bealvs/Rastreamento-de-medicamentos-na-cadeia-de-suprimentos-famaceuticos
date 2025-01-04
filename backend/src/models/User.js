@@ -54,12 +54,6 @@ const User = sequelize.define(
       type: DataTypes.STRING, // String type for passwords.
       allowNull: false, // Password is required.
     },
-    // Role of the user, restricted to specific predefined values.
-    role: {
-      type: DataTypes.ENUM("admin", "employee", "manager"), // Enum for user roles.
-      allowNull: false, // Role is required.
-      defaultValue: "employee", // Default role is 'employee'.
-    },
   },
   {
     timestamps: true, // Automatically adds createdAt and updatedAt fields.
