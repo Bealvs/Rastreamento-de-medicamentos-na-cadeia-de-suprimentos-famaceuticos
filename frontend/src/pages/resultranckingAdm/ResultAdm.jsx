@@ -3,48 +3,18 @@ import { Header } from "../../components/header/Header";
 import SidebarAdm from "../../components/sidebarAdm/SidebarAdm";
 import { Footer } from "../../components/footer/Footer";
 import Timeline from "../../components/timeline/Timeline";
-import { useLocation } from "react-router-dom";
 
-function Result() {
-  const location = useLocation();
-  const { trackingData } = location.state || {};
-
-  console.log("Dados recebidos na página /result-adm:", trackingData);
-
-  if (
-    !trackingData ||
-    !Array.isArray(trackingData) ||
-    trackingData.length === 0
-  ) {
-    return (
-      <div className="container-resultUser">
-        <div className="contentUser">
-          <h1>Nenhum dado de rastreio encontrado.</h1>
-        </div>
-      </div>
-    );
-  }
-
-  const activeLabel = trackingData[trackingData.length - 1].event;
-  console.log("Active Label:", activeLabel);
-
+function ResultA() {
   return (
-    <div className="container-resultUser">
-      <div className="contentUser">
-        <h1>Rastreio - Pedido: {trackingData[0].trackingCode}</h1>
-        <Timeline activeLabel={activeLabel} />
-        <div className="delivery">
-          {trackingData.map((event, index) => (
-            <div key={event.id} className="event">
-              <h3>
-                {new Date(event.timestamp).toLocaleDateString()} - {event.event}{" "}
-                - {event.location}
-              </h3>
-              <p>
-                <strong>Destino Final:</strong> {event.destinationPoint}
-              </p>
-            </div>
-          ))}
+    <div className="container-resultAdm">
+      <div className="contentAdm">
+        <h1>Rastreio - Pedido: ABC00000000000</h1>
+        <Timeline />
+        <div className="deliveryAdm">
+          <h3>26/12/2024 10:47 Objeto postado</h3>
+          <h3>26/12/2024 10:47 Objeto postado</h3>
+          <h3>26/12/2024 10:47 Objeto postado</h3>
+          <h3>26/12/2024 10:47 Objeto postado</h3>
         </div>
       </div>
     </div>
@@ -57,7 +27,7 @@ function ResultAdm() {
       <Header />
       <div style={{ display: "flex", flex: 1 }}>
         <SidebarAdm />
-        <Result />
+        <ResultA />
       </div>
       <Footer />
     </div>

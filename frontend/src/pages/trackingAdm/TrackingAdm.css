@@ -1,20 +1,19 @@
-.containers {
+.container-Adm {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-.contents {
+.content-Adm {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 750px;
-  background-color: #e9ecef;
 }
 
-.form-containers {
-  background-color: #fff;
+.form-container-Adm {
+  background-color: #eceded;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 350px;
@@ -22,22 +21,22 @@
   text-align: center;
 }
 
-.form-containers h1 {
+.form-container-Adm h1 {
   margin: 50px;
   font-size: 18px;
 }
 
-.form-containers form input {
+.form-container-Adm form input {
   display: block;
   width: 280px;
-  margin: 50px 25px 30px;
+  margin: 80px 25px 30px;
   border: 1px solid #ccc;
   border-radius: 20px;
   background-color: #b7cee4;
   padding: 10px;
 }
 
-.form-containers form a {
+.form-container-Adm form a {
   font-size: 12px;
   text-decoration: none;
   color: #007bff;
@@ -45,7 +44,7 @@
   display: block;
 }
 
-.form-containers form button {
+.form-container-Adm form button {
   width: 100px;
   border: none;
   border-radius: 60px;
@@ -53,6 +52,6 @@
   color: white;
   font-size: 16px;
   cursor: pointer;
-  margin: 25px 125px;
+  margin: 50px 125px;
   padding: 10px;
 }

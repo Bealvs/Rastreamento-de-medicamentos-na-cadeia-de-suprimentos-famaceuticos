@@ -32,7 +32,6 @@ export const getUserProfile = async (req, res) => {
 export const registerUser = async (req, res) => {
   const { name, cpf, cnpj, email, password } = req.body;
   try {
-
     // Criar nova conta blockchain
     const account = web3.eth.accounts.create();
     const address = account.address;
@@ -82,7 +81,6 @@ export const registerUser = async (req, res) => {
         email: user.email,
         blockchainAddress: user.blockchainAddress,
       },
-
     });
   } catch (error) {
     console.error("Erro ao registrar usuário:", error);
@@ -95,7 +93,7 @@ export const registerUser = async (req, res) => {
 
 // Authenticates a user and provides a JWT for subsequent requests.
 export const loginUser = async (req, res) => {
-  const { cpf, password } = req.body;
+  const { cpf, password } = req.body; 
 
   try {
     const user = await User.findOne({ where: { cpf } });
@@ -108,7 +106,6 @@ export const loginUser = async (req, res) => {
     if (!isPasswordValid) {
       return res.status(401).json({ message: "Credenciais inválidas" });
     }
-
 
     const token = jwt.sign(
       { id: user.id, blockchainAddress: user.blockchainAddress },
