@@ -1,7 +1,7 @@
-// Handles operations related to user management, such as registration, authentication, and profile management.
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+import { web3 } from "../config/blockchain.js";
 
 // Retrieves the profile of the currently authenticated user.
 export const getUserProfile = async (req, res) => {
@@ -29,21 +29,47 @@ export const getUserProfile = async (req, res) => {
 
 // Registers a new user in the system.
 export const registerUser = async (req, res) => {
-  const { name, cpf, cnpj, email, password, role } = req.body;
+  const { name, cpf, cnpj, email, password } = req.body;
   try {
-    const user = await User.create({ name, cpf, cnpj, email, password, role });
-    res
-      .status(201)
-      .json({
-        message: "Usuário registrado",
-        user: { name, cpf, cnpj, email, role },
-      });
+    const account = web3.eth.accounts.create();
+    const address = account.address;
+    const blockchainAddress = address;
+    
+    const user = await User.create({
+      name,
+      cpf,
+      cnpj,
+      email,
+      password,
+      blockchainAddress,
+    });
+
+    if (!user.blockchainAddress) {
+      return res
+        .status(400)
+        .json({
+          message: "Erro: Endereço da blockchain não foi gerado corretamente.",
+        });
+    }
+
+    res.status(201).json({
+      message: "Usuário registrado com sucesso!",
+      user: {
+        id: user.id,
+        name: user.name,
+        cpf: user.cpf,
+        cnpj: user.cnpj,
+        email: user.email,
+        blockchainAddress: user.blockchainAddress,
+      },
+    });
   } catch (error) {
     res
       .status(400)
       .json({ message: "Erro ao registrar usuário", error: error.message });
   }
 };
+
 
 // Authenticates a user and provides a JWT for subsequent requests.
 export const loginUser = async (req, res) => {
@@ -62,7 +88,7 @@ export const loginUser = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { id: user.id, role: user.role },
+      { id: user.id, blockchainAddress: user.blockchainAddress },
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
