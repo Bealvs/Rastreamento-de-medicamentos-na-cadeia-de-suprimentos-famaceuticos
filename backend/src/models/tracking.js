@@ -2,6 +2,11 @@ import { DataTypes } from "sequelize";
 import sequelize from "../config/database.js";
 
 const Tracking = sequelize.define("Tracking", {
+  id: {
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
+    primaryKey: true,
+  },
   location: {
     type: DataTypes.STRING,
     allowNull: false,
