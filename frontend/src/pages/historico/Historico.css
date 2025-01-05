@@ -1,28 +1,33 @@
-.fundoHistorico {
-  display: flex;
-  width: 100vw;
-  background-color: #e9ecef;
+
+.fundoHistorico{
+    display: flex;
+    width: 100vw;
+    height: auto;
+    background-color: #e9ecef;
 }
-.Historico {
-  display: grid;
-  width: 100vw;
-  height: 100vh;
-  margin: 20px;
-  padding-inline: 10px;
-  background-color: #fff;
-  border-radius: 5px;
-  grid-template-columns: 50% 50%;
-  justify-items: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.Historico{
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    margin: 20px;
+    padding-inline: 10px;
+    padding-bottom: 30px;
+    background-color: #b4b7b837;
+    border-radius: 5px;
+    grid-template-columns: 50% 50%;
+    justify-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
 }
-.quadrado {
-  height: 19%;
-  width: 80%;
-  margin-top: 40px;
-  border-radius: 20px;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  padding-left: 25px;
-  grid-gap: 10px;
-  background-color: #166fc951;
+.quadrado{
+    height: 150px;
+    width: 490px;
+    margin-top: 40px;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding-left: 25px;
+    grid-gap: 10px;
+    background-color: #166fc951;
 }
+

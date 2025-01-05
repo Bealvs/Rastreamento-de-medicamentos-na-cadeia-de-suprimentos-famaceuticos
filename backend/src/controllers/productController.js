@@ -8,7 +8,6 @@ const productController = {
       commercialName,
       genericName,
       characteristics,
-      dangerLevel,
       batch,
       manufacturingDate,
       expirationDate,
@@ -17,18 +16,16 @@ const productController = {
       tradeName,
       trackingCode,
       destinationPoint,
-      location, // Esperando localização para rastreamento
-      event, // Esperando evento para rastreamento
+      location, 
+      event,
     } = req.body;
 
     try {
-      // Criando um novo produto com os dados da requisição
       const product = await Product.create({
         productCode,
         commercialName,
         genericName,
         characteristics,
-        dangerLevel,
         batch,
         manufacturingDate,
         expirationDate,

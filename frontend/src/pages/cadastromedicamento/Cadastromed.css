@@ -43,3 +43,12 @@
   border-radius: 20px;
   color: white;
 }
+
+#option{
+    background-color: #166fc93b;
+    border-radius: 30px;
+    border: none;
+    width: 15%;
+    margin-inline: 10px;
+    padding: 8px;
+}

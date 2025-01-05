@@ -1,5 +1,13 @@
 :root {
-    color-scheme: normal;
+    color-scheme: light;
   }
   
+header, footer{
+  background-color: white;
+  color: black;
+}
 
+body{
+  color: black;
+  background-color: white;
+}

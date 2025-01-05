@@ -21,7 +21,7 @@
         "trackingCode": "TRK123456789",
         "destinationPoint": "Destino A",
         "location": "Armazém A",
-        "event": "Produto em transporte"
+        "event": "Produto postado"
      }
      ```
    - **Expected Output:** 
@@ -49,7 +49,7 @@
      "tracking": {
        "id": "some-tracking-uuid",
        "location": "Armazém A",
-       "event": "Produto em transporte",
+       "event": "Produto postado",
        "timestamp": "2024-01-02T10:00:00Z",
        "productId": "some-uuid"
      }
@@ -130,7 +130,7 @@
       {
         "id": 1,
         "location": "Armazém A",
-        "event": "Produto em transporte",
+        "event": "Produto postado",
         "timestamp": "2025-01-04T18:26:38.917Z",
         "trackingCode": "TRK123456789",
         "destinationPoint": "Destino A",
@@ -185,20 +185,7 @@
      - Status: 200 OK
      - Trackings: 
      ```json
-     [
        {
-         "id": "some-tracking-uuid",
-         "location": "Armazém A",
-         "event": "Produto em transporte",
-         "timestamp": "2024-01-02T10:00:00Z",
-         "productId": "some-uuid"
+         "destinationPoint": "Destino A"
        },
-       {
-         "id": "some-other-tracking-uuid",
-         "location": "Armazém B",
-         "event": "Produto em estoque",
-         "timestamp": "2024-01-02T11:00:00Z",
-         "productId": "some-uuid"
-       }
-     ]
      ```

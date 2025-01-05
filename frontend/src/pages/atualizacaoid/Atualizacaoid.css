@@ -60,3 +60,13 @@
     height: 17px;
     margin-left: 5px;
 }
+
+#infos{
+    background-color: #166fc93b;
+    border-radius: 30px;
+    border: none;
+    width: 53%;
+    margin-inline: 10px;
+    padding: 8px;
+    text-align: center;
+}
