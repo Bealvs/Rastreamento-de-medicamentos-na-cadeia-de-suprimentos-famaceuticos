@@ -15,14 +15,14 @@ function TelaCadastro() {
   const [success, setSuccess] = useState(false);
 
   const mutation = useMutation(
-    (newUser) => axiosInstance.post("/users/register", newUser), // Endpoint específico
+    (newUser) => axiosInstance.post("/users/register", newUser),
     {
       onSuccess: () => {
         setSuccess(true);
         setError(null);
       },
       onError: (error) => {
-        console.error("Erro detalhado:", error.response?.data); // Exibe o corpo da resposta
+        console.error("Erro detalhado:", error.response?.data);
         setError(error.response?.data?.message || "Erro ao registrar.");
         setSuccess(false);
       },
@@ -37,12 +37,11 @@ function TelaCadastro() {
       cpf: formData.get("cpf"),
       cnpj: formData.get("cnpj"),
       email: formData.get("email"),
-      password: formData.get("password"), // Campo fixo
+      password: formData.get("password"),
     };
 
     console.log("Dados enviados:", newUser);
 
-    // Validações (apenas email e senha)
     if (newUser.email !== formData.get("confirmEmail")) {
       setError("Os emails não coincidem.");
       return;

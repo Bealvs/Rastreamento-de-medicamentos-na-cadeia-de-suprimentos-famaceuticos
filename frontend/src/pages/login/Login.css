@@ -2,21 +2,22 @@
   display: flex;
   align-items: center;
   height: 100vh;
-  background-color: white;
+  background-color: #e9ecef;
 }
 
 .login {
   display: flex;
   flex-direction: column;
   width: 400px;
-  background-color: #b4b7b83b;
+  background-color: #fff;
   text-align: center;
   align-items: center;
   justify-self: center;
   justify-content: center;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 8px;
   margin: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .inputsLogin {

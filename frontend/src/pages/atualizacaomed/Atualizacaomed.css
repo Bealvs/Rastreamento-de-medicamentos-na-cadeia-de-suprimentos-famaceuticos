@@ -1,43 +1,41 @@
-.fundoAtualiza1{
-    display: flex;
-    align-items: center;
-    height: 100vh;
-    background-color: white;
+.fundoAtualiza1 {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  background-color: #e9ecef;
 }
 
-.rastreio{
-
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    height:45vh;
-    background-color: #b4b7b83b;
-    text-align: center;
-    align-items: center;
-    justify-self: center;
-    justify-content: center;
-    padding: 20px;
-    border-radius: 5px;
-    margin: auto;
+.rastreio {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 45vh;
+  background-color: #fff;
+  text-align: center;
+  align-items: center;
+  justify-self: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 5px;
+  margin: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.rastreio>input{
-    background-color: #166fc938;
-    padding: 8px;
-    border-radius: 30px;
-    border: none;
-    margin: 5px;
-    width: 85%;
-    
+.rastreio > input {
+  background-color: #166fc938;
+  padding: 8px;
+  border-radius: 30px;
+  border: none;
+  margin: 5px;
+  width: 85%;
 }
 
-.rastreio>button{
-    display: block;
-    margin-top: 30px;
-    margin-bottom: 60px;
-    margin-inline: auto;
-    background-color: #11B053;
-    border-radius: 20px;
-    color: white;
-    
+.rastreio > button {
+  display: block;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  margin-inline: auto;
+  background-color: #11b053;
+  border-radius: 20px;
+  color: white;
 }

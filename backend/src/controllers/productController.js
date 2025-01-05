@@ -1,10 +1,8 @@
-import Product from "../models/product.js"; // Importing the Product model.
-import Tracking from "../models/tracking.js"; // Importing the Tracking model.
+import { Product, Tracking } from "../models/index.js";
 
 const productController = {
-  // Create a new product and add initial tracking
+  // Criar um novo produto e adicionar o rastreamento inicial
   async createProduct(req, res) {
-    // Destructuring the incoming request body to extract the product data and tracking information
     const {
       productCode,
       commercialName,
@@ -19,12 +17,12 @@ const productController = {
       tradeName,
       trackingCode,
       destinationPoint,
-      location,  // Expecting location for tracking
-      event,      // Expecting event for tracking
+      location, // Esperando localização para rastreamento
+      event, // Esperando evento para rastreamento
     } = req.body;
 
     try {
-      // Creating a new product using the data from the request body
+      // Criando um novo produto com os dados da requisição
       const product = await Product.create({
         productCode,
         commercialName,
@@ -41,34 +39,34 @@ const productController = {
         destinationPoint,
       });
 
-      // If location and event are provided, automatically adding an initial tracking entry for the product
+      // Se localização e evento forem fornecidos, cria-se uma entrada de rastreamento
       if (location && event) {
         const tracking = await Tracking.create({
-          productId: product.id,
-          location,   // Location for the tracking entry
-          event,      // Event for the tracking entry
-          timestamp: new Date(),  // Current timestamp for the tracking event
+          location, // Localização para a entrada de rastreamento
+          event, // Evento para a entrada de rastreamento
+          trackingCode,
+          destinationPoint,
+          timestamp: new Date(), // Timestamp para o evento de rastreamento
         });
 
-        // Responding with the created product and the initial tracking entry
         res.status(201).json({
           product,
           tracking,
         });
       } else {
-        // If location and event are not provided, returning the product created without tracking
+        // Caso localização e evento não sejam fornecidos, retorna o produto sem rastreamento
         res.status(201).json({
           product,
-          message: "Product created, but tracking information was not provided.",
+          message:
+            "Produto criado, mas as informações de rastreamento não foram fornecidas.",
         });
       }
     } catch (error) {
-      // Handling errors and sending status 400
       res.status(400).json({ error: error.message });
     }
   },
 
-  // Get all products
+  // Obter todos os produtos
   async getAllProducts(req, res) {
     try {
       const products = await Product.findAll();
@@ -78,7 +76,7 @@ const productController = {
     }
   },
 
-  // Get product by tracking code
+  // Obter produto pelo código de rastreamento
   async getProductByTrackingCode(req, res) {
     const { trackingCode } = req.params;
 
@@ -88,7 +86,7 @@ const productController = {
       });
 
       if (!product) {
-        return res.status(404).json({ error: "Product not found" });
+        return res.status(404).json({ error: "Produto não encontrado" });
       }
 
       res.status(200).json(product);
@@ -97,49 +95,33 @@ const productController = {
     }
   },
 
-  // Get products by manufacturer
-  async getProductsByManufacturer(req, res) {
-    const { manufacturerName } = req.params;
-    try {
-      const products = await Product.findAll({
-        where: { manufacturerName },
-      });
-      res.status(200).json(products);
-    } catch (error) {
-      res.status(400).json({ error: error.message });
-    }
-  },
-
-  // Get products by status
-  async getProductsByStatus(req, res) {
-    const { status } = req.params;
-    try {
-      const products = await Product.findAll({
-        where: { status },
-      });
-      res.status(200).json(products);
-    } catch (error) {
-      res.status(400).json({ error: error.message });
-    }
-  },
-
-  // Add a Tracking entry for a product
+  // Adicionar uma entrada de Tracking para os produtos
   async addTracking(req, res) {
-    const { productId } = req.params;
-    const { location, event } = req.body;
+    const { trackingCode, location, event, destinationPoint } = req.body;
 
     try {
-      const product = await Product.findByPk(productId);
-      if (!product) {
-        return res.status(404).json({ error: "Product not found" });
+      // Buscar todos os produtos com o trackingCode fornecido
+      const products = await Product.findAll({ where: { trackingCode } });
+
+      if (products.length === 0) {
+        return res
+          .status(404)
+          .json({ error: "Nenhum produto encontrado com esse trackingCode" });
       }
 
+      // Criar o novo tracking
       const tracking = await Tracking.create({
         location,
         event,
-        timestamp: new Date(), // Automatically using the current date and time
-        productId,
+        timestamp: new Date(),
+        destinationPoint,
+        trackingCode,
       });
+
+      // Associar o tracking a todos os produtos encontrados
+      await Promise.all(
+        products.map((product) => product.addTracking(tracking))
+      );
 
       res.status(201).json(tracking);
     } catch (error) {
@@ -147,21 +129,66 @@ const productController = {
     }
   },
 
-  // Get all Trackings for a product
-  async getTrackingsByProduct(req, res) {
-    const { productId } = req.params;
+  // Obter todos os rastreamentos pelo trackingCode
+  async getTrackingsByTrackingCode(req, res) {
+    const { trackingCode } = req.params;
 
     try {
-      const product = await Product.findByPk(productId);
-      if (!product) {
-        return res.status(404).json({ error: "Product not found" });
-      }
-
       const trackings = await Tracking.findAll({
-        where: { productId },
+        where: { trackingCode },
       });
 
+      if (trackings.length === 0) {
+        return res.status(404).json({
+          error: "Nenhum rastreamento encontrado para esse trackingCode",
+        });
+      }
+
       res.status(200).json(trackings);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  },
+
+  // Obter produtos pelo CNPJ
+  async getProductsByCNPJ(req, res) {
+    const { cnpj } = req.body;
+
+    try {
+      // Buscar produtos com o CNPJ fornecido
+      const products = await Product.findAll({ where: { cnpj } });
+
+      if (products.length === 0) {
+        return res
+          .status(404)
+          .json({ error: "Nenhum produto encontrado para esse CNPJ" });
+      }
+
+      res.status(200).json(products);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  },
+
+  // Obter o destino final a partir de um código de rastreamento
+  async getFinalDestinationByTrackingCode(req, res) {
+    const { trackingCode } = req.params;
+
+    try {
+      // Buscar o rastreamento mais recente com o trackingCode fornecido
+      const tracking = await Tracking.findOne({
+        where: { trackingCode },
+        order: [["timestamp", "DESC"]], // Garantir que pegamos o rastreamento mais recente
+      });
+
+      if (!tracking) {
+        return res.status(404).json({
+          error: "Nenhum rastreamento encontrado para esse trackingCode",
+        });
+      }
+
+      // Retornar o destino final
+      res.status(200).json({ destinationPoint: tracking.destinationPoint });
     } catch (error) {
       res.status(400).json({ error: error.message });
     }

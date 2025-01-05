@@ -1,49 +1,63 @@
-import Tracking from "../models/tracking.js"; // Importing the Tracking model.
+import { Product, Tracking } from "../models/index.js";
 
 const trackingController = {
-  // Create a new Tracking entry
+  // Criar uma nova entrada de Tracking
   async createTracking(req, res) {
-    const { productId } = req.params; // Extracting the product ID from the request parameters
-    const { location, event } = req.body; // Extracting tracking data from the request body
+    const { location, event, trackingCode, destinationPoint } = req.body;
 
     try {
-      // Creating a new tracking entry for the given product
+      // Criando um novo rastreamento com os dados passados
       const tracking = await Tracking.create({
         location,
         event,
-        timestamp: new Date(), // Automatically using the current date and time
-        productId,
+        timestamp: new Date(),
+        trackingCode,
+        destinationPoint,
       });
-      res.status(201).json(tracking); // Responding with the created tracking and status 201
+
+      // Buscar todos os produtos com o trackingCode fornecido
+      const products = await Product.findAll({ where: { trackingCode } });
+      if (products.length === 0) {
+        return res
+          .status(404)
+          .json({ error: "Nenhum produto encontrado com esse trackingCode" });
+      }
+
+      // Associar o rastreamento a todos os produtos encontrados
+      await Promise.all(
+        products.map((product) => product.addTracking(tracking))
+      );
+
+      res.status(201).json(tracking);
     } catch (error) {
-      res.status(400).json({ error: error.message }); // Handling errors and sending status 400
+      res.status(400).json({ error: error.message });
     }
   },
 
-  // Get all Trackings
+  // Buscar todos os rastreamentos
   async getAllTrackings(req, res) {
     try {
-      // Fetching all tracking entries from the database
       const trackings = await Tracking.findAll();
-      res.status(200).json(trackings); // Responding with the list of all trackings
+      res.status(200).json(trackings);
     } catch (error) {
-      res.status(400).json({ error: error.message }); // Handling errors and sending status 400
+      res.status(400).json({ error: error.message });
     }
   },
 
-  // Get a Tracking entry by its ID
+  // Buscar uma entrada de Tracking pelo ID
   async getTrackingById(req, res) {
-    const { trackingId } = req.params; // Extracting the tracking ID from the request parameters
+    const { trackingId } = req.params;
 
     try {
-      // Fetching the tracking entry by its ID
-      const tracking = await Tracking.findByPk(trackingId);
+      const tracking = await Tracking.findByPk(trackingId, {
+        include: Product, // Incluindo os produtos associados ao tracking
+      });
       if (!tracking) {
-        return res.status(404).json({ error: "Tracking not found" }); // Responding with error if tracking is not found
+        return res.status(404).json({ error: "Tracking não encontrado" });
       }
-      res.status(200).json(tracking); // Responding with the found tracking entry
+      res.status(200).json(tracking);
     } catch (error) {
-      res.status(400).json({ error: error.message }); // Handling errors and sending status 400
+      res.status(400).json({ error: error.message });
     }
   },
 };

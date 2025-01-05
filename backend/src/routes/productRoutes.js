@@ -1,21 +1,32 @@
 import express from "express";
 import productController from "../controllers/productController.js";
-import authMiddleware from "../middlewares/authMiddleware.js"; // Import middleware de autenticação
+import authMiddleware from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
-// CRUD routes for Product
 router.post("/", authMiddleware, productController.createProduct); // Criar um novo produto
 router.get("/", productController.getAllProducts); // Obter todos os produtos
-router.get("/manufacturer/:manufacturerName", productController.getProductsByManufacturer); // Obter produtos por fabricante
-router.get(
-  "/manufacturer/:trackingCode",
-  productController.getProductByTrackingCode
-); // Obter produtos por código de rastreamento
-router.get("/status/:status", productController.getProductsByStatus); // Obter produtos por status
+router.get("/cnpj", productController.getProductsByCNPJ); // Obter produtos por CNPJ
+// router.get(
+//   "/tracking/:trackingCode",
+//   productController.getProductByTrackingCode
+// ); // Obter produto por código de rastreamento
 
 // Routes for Tracking related to Product
-router.post("/:productId/tracking", authMiddleware, productController.addTracking); // Adicionar rastreamento para um produto
-router.get("/:productId/tracking", productController.getTrackingsByProduct); // Obter todos os rastreamentos de um produto
+router.post(
+  "/tracking/:trackingCode",
+  authMiddleware,
+  productController.addTracking
+); // Adicionar rastreamento para um produto
+router.get(
+  "/tracking/:trackingCode",
+  productController.getTrackingsByTrackingCode
+); // Obter todos os rastreamentos de um produto
+
+// Routes for Final Destination
+router.get(
+  "/tracking/:trackingCode/destination",
+  productController.getFinalDestinationByTrackingCode
+); // Obter destino final pelo código de rastreamento
 
 export default router;

@@ -11,7 +11,6 @@
        "cnpj": "12345678000195", 
        "email": "john@example.com", 
        "password": "123456", 
-       "role": "employee" 
      }
      ```
    - **Expected Output:** 
@@ -40,8 +39,8 @@
       - Body:
      ```json
      { 
-       "cpf": "98323243434", 
-       "password": "123456" 
+        "cpf": "12345678901", 
+        "password": "123456"
      }
      ```
    - **Expected Output:** 
