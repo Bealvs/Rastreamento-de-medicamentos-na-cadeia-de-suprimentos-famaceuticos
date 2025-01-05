@@ -1,8 +1,10 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
-import { web3 } from "../config/blockchain.js";
-
+import {
+  web3,
+  medicationTrackingContractInstance,
+} from "../config/blockchain.js";
 // Retrieves the profile of the currently authenticated user.
 export const getUserProfile = async (req, res) => {
   try {
@@ -31,10 +33,30 @@ export const getUserProfile = async (req, res) => {
 export const registerUser = async (req, res) => {
   const { name, cpf, cnpj, email, password } = req.body;
   try {
+    // Criar nova conta blockchain
     const account = web3.eth.accounts.create();
     const address = account.address;
     const blockchainAddress = address;
-    
+
+    // Interagir com o contrato para autorizar o endereço do usuário
+    const accounts = await web3.eth.getAccounts(); // Obter contas disponíveis
+    const adminAccount = accounts[0]; // Usar a primeira conta como conta do administrador para enviar transações
+
+    try {
+      await medicationTrackingContractInstance.methods
+        .authorizeUser(blockchainAddress) // Chamar o método do contrato
+        .send({ from: adminAccount }); // Enviar a transação a partir da conta do administrador
+
+      console.log(`Endereço autorizado no contrato: ${blockchainAddress}`);
+    } catch (contractError) {
+      console.error("Erro ao autorizar o endereço no contrato:", contractError);
+      return res.status(500).json({
+        message: "Erro ao autorizar o endereço no contrato.",
+        error: contractError.message,
+      });
+    }
+
+    // Criar usuário no banco de dados
     const user = await User.create({
       name,
       cpf,
@@ -45,11 +67,9 @@ export const registerUser = async (req, res) => {
     });
 
     if (!user.blockchainAddress) {
-      return res
-        .status(400)
-        .json({
-          message: "Erro: Endereço da blockchain não foi gerado corretamente.",
-        });
+      return res.status(400).json({
+        message: "Erro: Endereço da blockchain não foi gerado corretamente.",
+      });
     }
 
     res.status(201).json({
@@ -64,6 +84,7 @@ export const registerUser = async (req, res) => {
       },
     });
   } catch (error) {
+    console.error("Erro ao registrar usuário:", error);
     res
       .status(400)
       .json({ message: "Erro ao registrar usuário", error: error.message });

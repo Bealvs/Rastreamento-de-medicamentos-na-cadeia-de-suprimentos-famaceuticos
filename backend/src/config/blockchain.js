@@ -17,7 +17,7 @@ if (!GANACHE_URL) {
 }
 
 // Inicializar o Web3
-const web3 = new Web3(GANACHE_URL);
+export const web3 = new Web3(GANACHE_URL);
 
 // Função para obter o endereço do contrato dinamicamente em desenvolvimento
 const getContractAddress = async (contractJSON, envAddress) => {
@@ -61,14 +61,12 @@ const createContractInstance = async (contractJSON, envAddress) => {
 };
 
 // Criar instâncias dos contratos
-const helloWorldContractInstance = await createContractInstance(
+export const helloWorldContractInstance = await createContractInstance(
   helloWorldJSON,
   HELLOWORLD_ADDRESS
 );
 
-const medicationTrackingContractInstance = await createContractInstance(
+export const medicationTrackingContractInstance = await createContractInstance(
   MedicationTrackingJSON,
   MEDICATIONTRACKING_ADDRESS
 );
-
-export { web3, helloWorldContractInstance, medicationTrackingContractInstance };

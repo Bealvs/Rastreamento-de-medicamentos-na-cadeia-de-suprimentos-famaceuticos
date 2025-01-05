@@ -42,12 +42,6 @@ const Product = sequelize.define(
       type: DataTypes.TEXT, // Allows detailed descriptions.
       allowNull: true,
     },
-    // Danger level of the product.
-    dangerLevel: {
-      type: DataTypes.ENUM("low", "medium", "high", "critical"), // Enum for danger levels.
-      allowNull: true,
-      defaultValue: "low", // Default level is 'low'.
-    },
     // Batch number of the product.
     batch: {
       type: DataTypes.STRING,

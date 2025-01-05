@@ -1,4 +1,4 @@
-import { helloWorldcontractInstance, web3 } from "../config/blockchain.js";
+import { helloWorldContractInstance, web3 } from "../config/blockchain.js";
 
 class HelloWorldController {
   async getMessage(req, res) {
