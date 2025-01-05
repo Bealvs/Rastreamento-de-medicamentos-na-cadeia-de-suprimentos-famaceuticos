@@ -16,7 +16,7 @@ function TelaBusca() {
   const TrackingMutation = useMutation(
     (TrackingData) =>
       axios.get(
-        `http://localhost:3000/api/v1/products/tracking/${TrackingData.TrackingCode}`
+        `http://localhost:3000/api/v2/products/tracking/${TrackingData.TrackingCode}`
       ),
     {
       onSuccess: (response) => {
