@@ -5,6 +5,8 @@ import userRoutes from "./routes/userRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import trackingRoutes from "./routes/trackingRoutes.js";
 import sequelize from "./config/database.js";
+import helloWorldRoutes from "./routes/helloWorldRoutes.js";
+import medicationTrackingRoutes from "./routes/medicationTrackingRoutes.js";
 
 class App {
   constructor() {
@@ -42,7 +44,9 @@ class App {
   routes() {
     this.app.use("/api/v1/users", userRoutes);
     this.app.use("/api/v1/products", productRoutes);
+    this.app.use("/api/v2/products", medicationTrackingRoutes);
     this.app.use("/api/v1/trackings", trackingRoutes);
+    this.app.use("/api/v1/helloWorld", helloWorldRoutes);
 
     this.app.get("/", (req, res) => {
       res.send("Server is running!");
