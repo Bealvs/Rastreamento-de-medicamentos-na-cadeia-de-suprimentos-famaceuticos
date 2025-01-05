@@ -1,8 +1,9 @@
+
 .fundoHistorico{
     display: flex;
     width: 100vw;
     height: auto;
-    background-color: #ffffff;
+    background-color: #e9ecef;
 }
 .Historico{
     display: grid;
@@ -15,7 +16,7 @@
     border-radius: 5px;
     grid-template-columns: 50% 50%;
     justify-items: center;
-
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
 }
 .quadrado{
@@ -29,3 +30,4 @@
     grid-gap: 10px;
     background-color: #166fc951;
 }
+
