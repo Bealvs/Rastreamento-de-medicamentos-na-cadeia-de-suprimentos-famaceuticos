@@ -1,8 +1,8 @@
 import './App.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Login } from './pages/login/Login'
-import { Cadastromed } from './pages/Cadastromedicamento/Cadastromed';
-import { Atualizacaomed } from './pages/Atualizacaomed/Atualizacaomed';
+import { Cadastromed } from './pages/cadastromedicamento/Cadastromed';
+import { Atualizacaomed } from './pages/atualizacaomed/Atualizacaomed';
 import { Atualizacaoid } from './pages/atualizacaoid/Atualizacaoid';
 import { Historico } from './pages/historico/Historico';
 import Register from "./pages/registerAdm/Register";
@@ -28,7 +28,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login></Login>} />
         <Route path="/atualizacaomed/rastreio" element={<Atualizacaomed></Atualizacaomed>} />
-        <Route path="/atualizacaomed/rastreio/id" element={<Atualizacaoid></Atualizacaoid>} />
+        <Route path="/atualizacaomed/rastreio/:trackingCode" element={<Atualizacaoid></Atualizacaoid>} />
         <Route path="/historico" element={<Historico></Historico>} />
         <Route path="/CadastroMedicamentos" element={<Cadastromed></Cadastromed>} />
         <Route path="/register" element={<Register />} />
