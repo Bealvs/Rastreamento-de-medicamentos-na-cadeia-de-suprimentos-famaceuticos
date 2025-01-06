@@ -1,8 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-
-import { Login } from './pages/login/Login'
+import {Login} from './pages/login/Login';
 import { Cadastromed } from './pages/cadastromedicamento/Cadastromed';
 import { Atualizacaomed } from './pages/atualizacaomed/Atualizacaomed';
 import { Atualizacaoid } from './pages/atualizacaoid/Atualizacaoid';
