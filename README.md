@@ -39,7 +39,7 @@ DB_HOST=localhost
 ```
 Container Docker se tiver instalado docker:
 ```bash
-docker run -e POSTGRES_DB=medicationTracking -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -p 5432:5432 -d postgres
+docker run -e POSTGRES_DB=medicationTracking -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
 ```
 
 ## Instruções para Execução
