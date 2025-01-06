@@ -47,17 +47,21 @@ docker run -e POSTGRES_DB=medicationTracking -e POSTGRES_USER=admin -e POSTGRES_
 ### 1. Configurar o Blockchain Local
 
 1. Inicie o Ganache para criar um blockchain local.
-2. No diretório do projeto, compile e implante os contratos inteligentes com os comandos:
+2. Navegue para o diretório do blockchain:
+   ```bash
+   cd blockchain
+   ```
+3. No diretório, compile e implante os contratos inteligentes com os comandos:
    ```bash
    truffle compile
    truffle migrate
    ```
-3. Anote o endereço do contrato implantado fornecido no terminal.
+4. Verifique se os contratos foram devidamente registrado na rede do ganache.
 
 > [!NOTE]
 > Porta do ganache = 7545
 > 
-> Se for alterar os dados do ganache, alterar também no arquivo truffle-config.js (blockchain\truffle-config.js)
+> Se for alterar os dados do ganache, alterar no `.env` do backend e no arquivo `truffle-config.js` (blockchain\truffle-config.js)
 
 ### 2. Configurar o Back-end
 
