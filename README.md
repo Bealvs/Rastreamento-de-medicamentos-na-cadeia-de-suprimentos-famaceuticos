@@ -37,6 +37,10 @@ DB_USER=postgres
 DB_PASSWORD=postgres
 DB_HOST=localhost
 ```
+Container Docker se tiver instalado docker:
+```bash
+docker run -e POSTGRES_DB=medicationTracking -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -p 5432:5432 -d postgres
+```
 
 ## Instruções para Execução
 
@@ -62,13 +66,16 @@ DB_HOST=localhost
    ```
 3. Crie um arquivo `.env` no diretório `backend` e adicione as seguintes variáveis de ambiente:
    ```env
+   NODE_ENV=development
+   JWT_SECRET=chave
+   PORT=3000
+   
    DB_NAME=medicationTracking
    DB_USER=postgres
-   DB_PASSWORD=postgres
+   DB_PASSWORD=nlmfr2018
    DB_HOST=localhost
-   BLOCKCHAIN_CONTRACT_ADDRESS=<endereço_do_contrato>
-   BLOCKCHAIN_PROVIDER=http://127.0.0.1:7545
-   JWT_SECRET=<sua_chave_secreta>
+   
+   GANACHE_URL=http://127.0.0.1:7545
    ```
 4. Inicie o servidor:
    ```bash
@@ -99,25 +106,23 @@ DB_HOST=localhost
 ## Estrutura do Projeto
 
 ```
-project-root/
+Rastreamento-de-medicamentos-na-cadeia-de-suprimentos-famaceuticos/
 ├── backend/       # Código do back-end
-├── contracts/     # Contratos inteligentes em Solidity
 ├── frontend/      # Código do front-end
-├── migrations/    # Scripts de migração para contratos
-├── build/         # Artefatos compilados do Truffle
+├── blockchain/    # Código da blockchain
 └── README.md      # Documentação do projeto
 ```
 
 ## Contribuidores
 
 - **Responsáveis pelo Front-end**:
-  - Desenvolvedor 1
-  - Desenvolvedor 2
+  - [Beatriz Alves](https://github.com/Bealvs)
+  - [Rakel Torres](https://github.com/rakeltorres)
 - **Responsáveis pelos Contratos Inteligentes**:
   - Desenvolvedor 3
   - Desenvolvedor 4
 - **Responsável pelo Back-end**:
-  - Desenvolvedor 5
+  - [Felipe Ferraz](https://github.com/FelipeFerraz4)
 
 ## Considerações Finais
 
