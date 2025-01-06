@@ -128,8 +128,8 @@ Rastreamento-de-medicamentos-na-cadeia-de-suprimentos-famaceuticos/
   - [Beatriz Alves](https://github.com/Bealvs)
   - [Rakel Torres](https://github.com/rakeltorres)
 - **Responsáveis pelos Contratos Inteligentes**:
-  - Desenvolvedor 3
-  - Desenvolvedor 4
+  - [Jennyfer Rocha](https://github.com/jennyferrocha)
+  - [Maria Dalva](https://github.com/Mariadalva25)
 - **Responsável pelo Back-end**:
   - [Felipe Ferraz](https://github.com/FelipeFerraz4)
 
