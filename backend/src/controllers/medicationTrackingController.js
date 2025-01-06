@@ -335,7 +335,6 @@ export async function addTracking(req, res) {
       });
     }
 
-    console.log(ownerAddress);
 
     // Estimar o gás para a transação
     let gasEstimate = await medicationTrackingContractInstance.methods
@@ -351,7 +350,6 @@ export async function addTracking(req, res) {
 
     // Adicionar 10% a mais como margem de segurança
     let gasWithBuffer = (gasEstimate * 110n) / 100n; // 10% a mais de gás
-    console.log("Gás estimado com margem de segurança:", gasWithBuffer);
 
     // Adicionar rastreamento ao contrato
     await medicationTrackingContractInstance.methods

@@ -16,12 +16,17 @@
   width: 70px;
   height: 70px;
   background-color: white;
-  border: 15px solid #4caf50; /* Cor verde */
+  border: 15px solid #4caf50; /* Cor verde padrão */
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 35px; /* Tamanho do ícone */
+  transition: border-color 0.3s ease; /* Transição suave */
+}
+
+.timeline-icon.active {
+  border-color: #1b5e20; /* Cor laranja para o ícone ativo */
 }
 
 .timeline-line {

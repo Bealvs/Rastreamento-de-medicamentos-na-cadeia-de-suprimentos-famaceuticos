@@ -1,5 +1,7 @@
-import './App.css'
+import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+
 import { Login } from './pages/login/Login'
 import { Cadastromed } from './pages/cadastromedicamento/Cadastromed';
 import { Atualizacaomed } from './pages/atualizacaomed/Atualizacaomed';
@@ -25,22 +27,31 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login></Login>} />
         <Route path="/login" element={<Login></Login>} />
+
         <Route path="/atualizacaomed/rastreio" element={<Atualizacaomed></Atualizacaomed>} />
         <Route path="/atualizacaomed/rastreio/:trackingCode" element={<Atualizacaoid></Atualizacaoid>} />
+
         <Route path="/historico" element={<Historico></Historico>} />
-        <Route path="/CadastroMedicamentos" element={<Cadastromed></Cadastromed>} />
+        <Route
+          path="/CadastroMedicamentos"
+          element={<Cadastromed></Cadastromed>}
+        />
         <Route path="/register" element={<Register />} />
         <Route path="/tracking-user" element={<TrackingUser />} />
         <Route path="/result-user" element={<ResultUser />} />
-        <Route path="/tracking-adm" element={
+        <Route
+          path="/tracking-adm"
+          element={
             <Layout>
               <TrackingAdm />
             </Layout>
           }
         />
-        <Route path="/result-adm" element={
+        <Route
+          path="/result-adm"
+          element={
             <Layout>
               <ResultAdm />
             </Layout>
