@@ -54,6 +54,11 @@ docker run -e POSTGRES_DB=medicationTracking -e POSTGRES_USER=admin -e POSTGRES_
    ```
 3. Anote o endereço do contrato implantado fornecido no terminal.
 
+> [!NOTE]
+> Porta do ganache = 7545
+> 
+> Se for alterar os dados do ganache, alterar também no arquivo truffle-config.js (blockchain\truffle-config.js)
+
 ### 2. Configurar o Back-end
 
 1. Navegue para o diretório do back-end:
