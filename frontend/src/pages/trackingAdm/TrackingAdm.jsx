@@ -26,7 +26,7 @@ function TelaBusca() {
         );
         setError(null);
 
-        navigate("/result-adm", { state: { trackingData: response.data } });
+        navigate("/result-adm", { state: { trackingData: response.data.trackings } });
       },
       onError: (error) => {
         console.error(

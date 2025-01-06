@@ -7,7 +7,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export function Login() {
   const [cpf, setCpf] = useState("");
   const [cnpj, setCnpj] = useState("");
   const [password, setPassword] = useState("");

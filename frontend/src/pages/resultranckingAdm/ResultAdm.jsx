@@ -25,7 +25,7 @@ function Result() {
     );
   }
 
-  const activeLabel = trackingData[trackingData.length - 1].event;
+  const activeLabel = trackingData[trackingData.length - 1].status;
   console.log("Active Label:", activeLabel);
 
   return (
@@ -34,14 +34,14 @@ function Result() {
         <h1>Rastreio - Pedido: {trackingData[0].trackingCode}</h1>
         <Timeline activeLabel={activeLabel} />
         <div className="delivery">
-          {trackingData.map((event, index) => (
-            <div key={event.id} className="event">
+          {trackingData.map((status, index) => (
+            <div key={status.id} className="status">
               <h3>
-                {new Date(event.timestamp).toLocaleDateString()} - {event.event}{" "}
-                - {event.location}
+                {new Date(status.timestamp).toLocaleDateString()} - {status.status}{" "}
+                - {status.location}
               </h3>
               <p>
-                <strong>Destino Final:</strong> {event.destinationPoint}
+                <strong>Destino Final:</strong> {status.destinationPoint}
               </p>
             </div>
           ))}
@@ -53,7 +53,7 @@ function Result() {
 
 function ResultAdm() {
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <Header />
       <div style={{ display: "flex", flex: 1 }}>
         <SidebarAdm />

@@ -10,12 +10,12 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 
 export function Atualizacaoid(){
 
-    axios.defaults.headers.common = {'Authorization': `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYyYTk4NmI2LTNlZjEtNGYyOC05OGY2LWY2MGIxZTAxYTk5OCIsImlhdCI6MTczNjA5OTYyNiwiZXhwIjoxNzM2MTg2MDI2fQ.xr2-A4xkLfzIhQWAlHnxdxAYjjiIy9PDFLdkaou55qk`, 'Content-Type': 'application/json'}
-
+    const token = localStorage.getItem("token");
+    axios.defaults.headers.common = {'Authorization': `bearer ${token}`, 'Content-Type': 'application/json'}
     let {trackingCode} = useParams();
     const {data, error, isLoading, isFetched} = useQuery({
         queryKey: ["product", trackingCode],
-        queryFn: () => axios.get(`http://localhost:3000/api/v1/products/tracking/${trackingCode}`).then((res) => res.data),
+        queryFn: () => axios.get(`http://localhost:3000/api/v2/products/tracking/${trackingCode}`).then((res) => res.data),
     }); 
     let ultimaAtualizacao = {  
         location: "",
@@ -33,7 +33,7 @@ export function Atualizacaoid(){
         });
     const {mutate, isError, isSuccess} = useMutation({
         mutationKey: ["tracking", trackingCode],
-        mutationFn: (trackDados)=> axios.post(`http://localhost:3000/api/v1/products/tracking/${trackingCode}`, trackDados),
+        mutationFn: (trackDados)=> axios.post(`http://localhost:3000/api/v2/products/tracking/${trackingCode}`, trackDados),
         onSuccess: 
              (res) => { setResponse(res)
              setAlertMessage("Dados cadastrados com sucesso!");
@@ -62,17 +62,19 @@ export function Atualizacaoid(){
             }
         }
     }, [alertMessage, isSuccess]);
+    
     useEffect(() => {
-        if (data) {
-            ultimaAtualizacao = Array.isArray(data) ? data[data.length - 1] : data;
+        if (data && data.trackings) {
+            const ultimaAtualizacao = Array.isArray(data.trackings) ? data.trackings[data.trackings.length - 1] : data.trackings;
             settrackDados({
-                location: ultimaAtualizacao.location,
-                event: "Produto postado",
+                location: ultimaAtualizacao.location || "",
+                event: ultimaAtualizacao.status || "Produto postado",
                 trackingCode: ultimaAtualizacao.trackingCode || "",
                 destinationPoint: ultimaAtualizacao.destinationPoint || "",
             });
         }
     }, [data]);
+    
 
     if (isLoading) return <p>Carregando...</p>;
     if (error) return <p>Erro ao carregar os dados: {JSON.stringify(error)}</p>;

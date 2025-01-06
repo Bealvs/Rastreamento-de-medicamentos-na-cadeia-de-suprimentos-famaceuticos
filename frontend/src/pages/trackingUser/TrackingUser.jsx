@@ -1,4 +1,4 @@
-import "./TrackingUser.css";
+import './TrackingUser.css';
 import { Header } from "../../components/header/Header";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { Footer } from "../../components/footer/Footer";
@@ -26,7 +26,7 @@ function TelaBusca() {
         );
         setError(null);
 
-        navigate("/result-user", { state: { trackingData: response.data } });
+        navigate("/result-user", { state: { trackingData: response.data.trackings } });
       },
       onError: (error) => {
         console.error(
@@ -78,7 +78,7 @@ function TrackingUser() {
     <div>
       <Header />
       <div style={{ display: "flex" }}>
-        <SidebarAdm />
+        <Sidebar />
         <TelaBusca />
       </div>
       <Footer />

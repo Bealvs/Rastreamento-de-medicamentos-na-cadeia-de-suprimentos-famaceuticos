@@ -8,13 +8,13 @@ import axios from "axios";
 import { InputMask } from '@react-input/mask';
 
 export function Cadastromed() {
-    axios.defaults.headers.common = {'Authorization': `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM1NWU4YmYyLWRhMzYtNDE1Yy05MzA3LTcyNDhjYWI0YTRiOCIsImJsb2NrY2hhaW5BZGRyZXNzIjoiMHgyM2Q4ZkI5NTgwOEYwNWFENTFEZkEwMDc5YThBY2JjNmY4QzI0MmZFIiwiaWF0IjoxNzM2MTE5Mjg0LCJleHAiOjE3MzYyMDU2ODR9.Ph9I3P8-sHyYrCiKbn3caE5FerXwTAzylXK2PhD0CQI`, 'Content-Type': 'application/json'}
-
+    const token = localStorage.getItem("token");
+    axios.defaults.headers.common = {'Authorization': `bearer ${token}`, 'Content-Type': 'application/json'}
     const [response, setResponse] = useState(null);
     const [alertMessage, setAlertMessage] = useState("");
 
     const {mutate, isError, isSuccess} = useMutation({
-    mutationFn: (formDados)=> axios.post("http://localhost:3000/api/v1/products/", formDados),
+    mutationFn: (formDados)=> axios.post("http://localhost:3000/api/v2/products/", formDados),
     onSuccess: 
          (res) => { setResponse(res)
          setAlertMessage("Dados cadastrados com sucesso!");
@@ -36,11 +36,9 @@ export function Cadastromed() {
             commercialName: "", 
             genericName: "", 
             characteristics: "",
-            dangerLevel: "low",
             batch: "",
             manufacturingDate: "",
             expirationDate: "",
-            status: "produced",
             manufacturerName: "",
             cnpj: "",
             tradeName: "",
@@ -221,12 +219,6 @@ export function Cadastromed() {
                             />      
                         </div>
                         <div className="block">
-                            <label>Localização por status:</label>
-                            <select name="status" id="infos" onChange={(e) => setformDados({ ...formDados, event: e.target.value })}>
-                                    <option value="Produto postado">Produto postado</option>
-                            </select>   
-                        </div>
-                        <div className="block">
                             <label>Ponto de destino:</label>
                             <input 
                                 type="text" 
@@ -236,24 +228,6 @@ export function Cadastromed() {
                                 value={formDados.destinationPoint} 
                                 onChange={(e) => setformDados({ ...formDados, destinationPoint: e.target.value })} 
                             />
-                        </div>
-                        <div className="block">
-                            <label>Status do produto:</label>
-                            <select name="danger" id="option" onChange={(e) => setformDados({ ...formDados, status: e.target.value })}>
-                                <option value="produced">Produced</option>
-                                <option value="inspected" >Inspected</option>
-                                <option value="in transit" >In transit</option>
-                                <option value="delivered" >Delivered</option>
-                            </select>
-                        </div>
-                        <div className="block">
-                            <label>Nivel de risco:</label>
-                            <select name="danger" id="option" onChange={(e) => setformDados({ ...formDados, dangerLevel: e.target.value })}>
-                                <option value="low">Low</option>
-                                <option value="medium">Medium</option>
-                                <option value="high">High</option>
-                                <option value="critical">Critical</option>
-                            </select>
                         </div>
                     </div>
                     <button type="submit">Cadastrar</button>
