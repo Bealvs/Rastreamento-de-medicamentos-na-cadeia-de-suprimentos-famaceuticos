@@ -8,7 +8,7 @@ import axios from "axios";
 import { InputMask } from '@react-input/mask';
 
 export function Cadastromed() {
-    axios.defaults.headers.common = {'Authorization': `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA4ZjZmM2E1LTZjMmEtNDZmYi04NzZkLTNiNDZmMjIxNmI0YiIsImlhdCI6MTczNjEwNjYyNCwiZXhwIjoxNzM2MTkzMDI0fQ.Kp6_FHVyrUXkZA7YOySyHVF6Pte8XD30f3R8czbNu8c`, 'Content-Type': 'application/json'}
+    axios.defaults.headers.common = {'Authorization': `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM1NWU4YmYyLWRhMzYtNDE1Yy05MzA3LTcyNDhjYWI0YTRiOCIsImJsb2NrY2hhaW5BZGRyZXNzIjoiMHgyM2Q4ZkI5NTgwOEYwNWFENTFEZkEwMDc5YThBY2JjNmY4QzI0MmZFIiwiaWF0IjoxNzM2MTE5Mjg0LCJleHAiOjE3MzYyMDU2ODR9.Ph9I3P8-sHyYrCiKbn3caE5FerXwTAzylXK2PhD0CQI`, 'Content-Type': 'application/json'}
 
     const [response, setResponse] = useState(null);
     const [alertMessage, setAlertMessage] = useState("");
@@ -22,8 +22,10 @@ export function Cadastromed() {
     },
     onError: (error) => {
         console.error("Erro detalhado:", error.response?.data || error.message);
+        console.log(formDados)
         setResponse(error.response?.data || error.message);
         setAlertMessage("Ocorreu um erro! Os dados não foram cadastrados! ",  res.response?.data );
+        
       },
       
   })

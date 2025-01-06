@@ -22,7 +22,7 @@ export function Atualizacaoid(){
         event: "", 
         trackingCode: "", 
         destinationPoint: "" };
-
+    const[response, setResponse] = useState("")
     const [alertMessage, setAlertMessage] = useState("");
     const [trackDados, settrackDados] = useState(
         {
@@ -65,10 +65,9 @@ export function Atualizacaoid(){
     useEffect(() => {
         if (data) {
             ultimaAtualizacao = Array.isArray(data) ? data[data.length - 1] : data;
-            console.log(ultimaAtualizacao)
             settrackDados({
-                location: "",
-                event: "",
+                location: ultimaAtualizacao.location,
+                event: "Produto postado",
                 trackingCode: ultimaAtualizacao.trackingCode || "",
                 destinationPoint: ultimaAtualizacao.destinationPoint || "",
             });

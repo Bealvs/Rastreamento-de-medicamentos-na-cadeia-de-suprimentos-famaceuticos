@@ -11,7 +11,7 @@ export function Historico() {
 
     const {data, error, isLoading} = useQuery({
         queryKey: ["product"],
-        queryFn: () => axios.get("http://localhost:3000/api/v1/products").then((res) => res.data),
+        queryFn: () => axios.get("http://localhost:3000/api/v2/products").then((res) => res.data),
         
     });
 
