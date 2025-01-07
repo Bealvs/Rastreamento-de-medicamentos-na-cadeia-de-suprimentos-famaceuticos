@@ -68,14 +68,14 @@ export function Atualizacaoid(){
             const ultimaAtualizacao = Array.isArray(data.trackings) ? data.trackings[data.trackings.length - 1] : data.trackings;
             settrackDados({
                 location: ultimaAtualizacao.location || "",
-                event: ultimaAtualizacao.status || "Produto postado",
+                event: ultimaAtualizacao.event || "Produto postado",
                 trackingCode: ultimaAtualizacao.trackingCode || "",
                 destinationPoint: ultimaAtualizacao.destinationPoint || "",
             });
         }
     }, [data]);
     
-
+  
     if (isLoading) return <p>Carregando...</p>;
     if (error) return <p>Erro ao carregar os dados: {JSON.stringify(error)}</p>;
     return (
@@ -100,11 +100,10 @@ export function Atualizacaoid(){
                             </div>
                             <div className="info">
                             <label>Status atual:</label>
-                                <select name="status" id="infos" onChange={(e) => settrackDados({ ...trackDados, event: e.target.value })}>
-                                    <option value="Produto postado">Produto postado</option>
+                                <select name="status" value={trackDados.event} id="infos" onChange={(e) => settrackDados({ ...trackDados, event: e.target.value })}>
                                     <option value="Produto em inspeção" >Produto em inspeção</option>
                                     <option value="Produto em transporte" >Produto em transporte</option>
-                                    <option value="Produto entregue" >Produto entregue</option>
+                                    <option value="Produto entregue" >Produto entregue</option>
                                 </select>
                             </div>
                         </div>
